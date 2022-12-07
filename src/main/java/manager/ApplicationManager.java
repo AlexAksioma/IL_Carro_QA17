@@ -7,10 +7,23 @@ public class ApplicationManager {
 
     WebDriver wd;
 
+    HelperUser user;
+
+    HelperRegistration registration;
+
     public void init(){
         wd = new ChromeDriver();
         wd.manage().window().maximize();
-        wd.navigate().to("https://ilcarro-1578153671498.web.app/search");
+        wd.navigate().to("https://ilcarro.web.app/");
+        user = new HelperUser(wd);
+        registration = new HelperRegistration(wd);
+    }
 
+    public HelperUser getUser() {
+        return user;
+    }
+
+    public HelperRegistration getRegistration() {
+        return registration;
     }
 }
