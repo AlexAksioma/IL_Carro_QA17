@@ -17,7 +17,7 @@ public class HelperUser extends HelperBase {
 
 
 
-    public void submitLogin() {
+    public void clickYallaButton() {
         click(By.xpath("//button[@type='submit']"));
     }
 
@@ -35,7 +35,7 @@ public class HelperUser extends HelperBase {
 
     public void login(User data) {
         filLoginForm(data);
-        submitLogin();
+        clickYallaButton();
 
     }
 
