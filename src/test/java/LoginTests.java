@@ -22,8 +22,9 @@ public class LoginTests extends TestBase{
         //app.getUser().login(data.getEmail(),data.getPassword());
         app.getUser().login(data);
         app.getUser().pause(2000);
+
+        Assert.assertTrue(app.getUser().isLoggedSucces());
         app.getUser().clickOkButton();
-        Assert.assertTrue(app.getUser().isLogged());
     }
 
     @Test

@@ -21,7 +21,7 @@ public class RegistrationTests extends TestBase{
         app.getRegistration().filLRegistrationForm(data);
         app.getRegistration().clickCheckBoxTerms();
         app.getRegistration().clickYallaButton();
-        app.getRegistration().pause(3000);
+        //app.getRegistration().pause(3000);
         app.getRegistration().clickOkButton();
 
         Assert.assertTrue(app.getRegistration().isLogged());

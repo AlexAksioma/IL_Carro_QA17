@@ -3,6 +3,8 @@ package manager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 import java.util.Random;
@@ -14,6 +16,7 @@ public class HelperBase {
         this.wd = wd;
     }
     public boolean isElementPresent(By locator) {
+
         return wd.findElements(locator).size() > 0;
     }
 
@@ -25,6 +28,8 @@ public class HelperBase {
     }
 
     public void click(By locator) {
+        //WebDriverWait wait = new WebDriverWait(wd, 5);
+        //wait.until(ExpectedConditions.presenceOfElementLocated(locator));
         wd.findElement(locator).click();
     }
 
@@ -91,8 +96,26 @@ public class HelperBase {
     public boolean isLogged() {
         return isElementPresent(By.xpath("//a[text()=' Logout ']"));
     }
+    public boolean isLoggedSucces() {
+        WebDriverWait wait = new WebDriverWait(wd, 5);
+        //wait.until(ExpectedConditions.visibilityOf(element));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".dialog-container")));
+        WebElement element = wd.findElement(By.cssSelector(".dialog-container"));
+        return element.getText().contains("Logged in success");
+    }
 
     public void logout() {
         click(By.xpath("//a[text()=' Logout ']"));
+    }
+
+    public boolean elementIsDisplayed(By locator){
+        return wd.findElement(locator).isDisplayed();
+    }
+
+    public boolean buttonIsEnabled(By locator){
+        if(wd.findElement(locator).getAttribute("disabled")==null)
+            return true;
+        else
+            return false;
     }
 }
