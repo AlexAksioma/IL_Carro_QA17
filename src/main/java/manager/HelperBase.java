@@ -28,8 +28,6 @@ public class HelperBase {
     }
 
     public void click(By locator) {
-        //WebDriverWait wait = new WebDriverWait(wd, 5);
-        //wait.until(ExpectedConditions.presenceOfElementLocated(locator));
         wd.findElement(locator).click();
     }
 
@@ -75,7 +73,8 @@ public class HelperBase {
     }
 
     public String generateRandomPassword(){
-        return generateRandomString_a_z(5)+generateRandomStringNumber(5)+"!Q";
+        return generateRandomString_a_z(5)
+                +generateRandomStringNumber(5)+"!Q";
     }
 
     public List<WebElement> elementsPresent(By locator){
@@ -96,11 +95,15 @@ public class HelperBase {
     public boolean isLogged() {
         return isElementPresent(By.xpath("//a[text()=' Logout ']"));
     }
+
     public boolean isLoggedSucces() {
-        WebDriverWait wait = new WebDriverWait(wd, 5);
+        WebDriverWait wait = new WebDriverWait(wd, 10);
         //wait.until(ExpectedConditions.visibilityOf(element));
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".dialog-container")));
-        WebElement element = wd.findElement(By.cssSelector(".dialog-container"));
+        //wait.until(ExpectedConditions.presenceOfElementLocated(By.id("mat-dialog-0")));
+        wait.until(ExpectedConditions.presenceOfElementLocated(
+                By.xpath("//mat-dialog-container//h2[text()='Logged in success']")));
+        //WebElement element = wd.findElement(By.cssSelector(".dialog-container"));
+        WebElement element = wd.findElement(By.xpath("//mat-dialog-container//h2[text()='Logged in success']"));
         return element.getText().contains("Logged in success");
     }
 

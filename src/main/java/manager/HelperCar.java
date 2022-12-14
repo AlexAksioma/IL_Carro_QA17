@@ -3,6 +3,7 @@ package manager;
 import models.Car;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Select;
 
 public class HelperCar extends HelperBase{
     public HelperCar(WebDriver wd) {
@@ -21,7 +22,8 @@ public class HelperCar extends HelperBase{
     public void fillCarForm(Car car) {
         type(By.id("pickUpPlace"), car.getAddress());
         pause(3000);
-        click(By.xpath("//span[text()='Tel Aviv']"));
+        //click(By.xpath("//span[text()='Tel Aviv']"));
+        click(By.cssSelector("div.pac-item"));
         //click(By.xpath("//div[contains(text()='Tel Aviv')]"));
         pause(3000);
 
@@ -29,7 +31,10 @@ public class HelperCar extends HelperBase{
         type(By.id("model"), car.getModel());
         type(By.id("year"), car.getYear());
         //type(By.id("fuel"), car.getFuel());
-        click(By.xpath("//option[@value='Electric']"));
+
+        //click(By.xpath("//option[@value='Electric']"));
+        select(By.id("fuel"), car.getFuel());
+
         type(By.id("seats"), car.getSeats());
 
         type(By.id("class"), car.getCarClass());
@@ -40,6 +45,10 @@ public class HelperCar extends HelperBase{
         type(By.id("price"), car.getPrice());
 
 
+    }
+
+    public void select(By locator, String option){
+        new Select(wd.findElement(locator)).selectByValue(option);
     }
 
     public void submitCarForm() {

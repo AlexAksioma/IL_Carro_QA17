@@ -3,6 +3,9 @@ package manager;
 import models.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HelperRegistration extends HelperBase{
 
@@ -27,10 +30,30 @@ public class HelperRegistration extends HelperBase{
     }
 
     public void clickYallaButton(){
+        WebDriverWait wait = new WebDriverWait(wd, 5);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@type='submit']")));
         click(By.xpath("//button[@type='submit']"));
     }
 
     public void clickOkButton(){
+        WebDriverWait wait = new WebDriverWait(wd, 5);
+        wait.until(ExpectedConditions.presenceOfElementLocated((By.xpath("//button[text()='Ok']"))));
         click(By.xpath("//button[text()='Ok']"));
+    }
+
+    public boolean buttonYalla_IsEnabled() {
+        return buttonIsEnabled(By.xpath("//button[@type='submit']"));
+    }
+
+    public boolean checkBox_isPresent() {
+        WebElement element = wd.findElement(By.id("terms-of-use"));
+        System.out.println(element.getAttribute("class"));
+        return element.getAttribute("class").equals("ng-dirty ng-valid ng-touched");
+    }
+
+    public boolean isRegistrationFailed_User_already_exists() {
+        WebDriverWait wait = new WebDriverWait(wd, 5);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".message")));
+        return returnContainsElement(By.cssSelector(".message")).contains("User already exists");
     }
 }
