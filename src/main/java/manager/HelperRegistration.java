@@ -13,6 +13,9 @@ public class HelperRegistration extends HelperBase{
     }
 
     public void openRegistrationForm() {
+        WebDriverWait wait = new WebDriverWait(wd, 5);
+        wait.until(ExpectedConditions.presenceOfElementLocated
+                (By.xpath("//a[@href='/registration?url=%2Fsearch']")));
         click(By.xpath("//a[@href='/registration?url=%2Fsearch']"));
     }
 
@@ -78,5 +81,8 @@ public class HelperRegistration extends HelperBase{
     }
 
 
-
+    public boolean isEmailWrong_Wrong_email_format() {
+        return returnContainsElement(By.cssSelector("div[class='error'] div:nth-child(1)"))
+                .contains("Wrong email format");
+    }
 }

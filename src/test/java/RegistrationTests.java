@@ -17,7 +17,7 @@ public class RegistrationTests extends TestBase{
                 .withLastName(app.getRegistration().generateRandomString_a_z(10))
                 .withEmail(app.getRegistration().generateRandomStringEmail())
                 .withPassword(app.getRegistration().generateRandomPassword());
-        app.getRegistration().openRegistrationForm();
+        app.getRegistration().openRegistrationForm();//wait in method 5 sec
         app.getRegistration().filLRegistrationForm(data);
 
         if(!app.getRegistration().checkBox_isPresent())
@@ -41,7 +41,7 @@ public class RegistrationTests extends TestBase{
 
         app.getRegistration().clickCheckBox_By_Click_Texst();
         Assert.assertTrue(app.getRegistration().isPasswordInvalid_Must_contains());
-        
+
     }
     @Test
     public void registrationNegativeTest_Email_WO_dog() {//do this as incorrect password
@@ -54,7 +54,7 @@ public class RegistrationTests extends TestBase{
 
         if(!app.getRegistration().checkBox_isPresent())
             app.getRegistration().clickCheckBox_By_Click_Texst();
-
+        Assert.assertTrue(app.getRegistration().isEmailWrong_Wrong_email_format());
         Assert.assertFalse(app.getRegistration().buttonYalla_IsEnabled());
 
     }
