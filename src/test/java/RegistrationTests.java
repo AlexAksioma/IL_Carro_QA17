@@ -21,16 +21,30 @@ public class RegistrationTests extends TestBase{
         app.getRegistration().filLRegistrationForm(data);
 
         if(!app.getRegistration().checkBox_isPresent())
-            app.getRegistration().clickCheckBoxTerms();
+            app.getRegistration().clickCheckBox_By_Click_Texst();
 
-        app.getRegistration().clickYallaButton();//wait in method 5sec elementToBeClickable
+        app.getRegistration().clickYallaButton();//wait in method 10sec elementToBeClickable
 
-        app.getRegistration().clickOkButton();//wait in method 5sec presenceOfElementLocated
+        app.getRegistration().clickOkButton();//wait in method 5sec presenceOfElementLocated/
 
         Assert.assertTrue(app.getRegistration().isLogged());
     }
+
     @Test
-    public void registrationNegativeTest_Email_WO_dog() {
+    public void registrationNegativeTest_Incorrect_Password(){
+        User data = new User().withName(app.getRegistration().generateRandomString_a_z(5))
+                .withLastName(app.getRegistration().generateRandomString_a_z(10))
+                .withEmail(app.getRegistration().generateRandomStringEmail())
+                .withPassword(app.getRegistration().generateRandomString_a_z(10));
+        app.getRegistration().openRegistrationForm();
+        app.getRegistration().filLRegistrationForm(data);
+
+        app.getRegistration().clickCheckBox_By_Click_Texst();
+        Assert.assertTrue(app.getRegistration().isPasswordInvalid_Must_contains());
+        
+    }
+    @Test
+    public void registrationNegativeTest_Email_WO_dog() {//do this as incorrect password
         User data = new User().withName(app.getRegistration().generateRandomString_a_z(5))
                 .withLastName(app.getRegistration().generateRandomString_a_z(10))
                 .withEmail(app.getRegistration().generateRandomString_a_z(7))
@@ -39,7 +53,7 @@ public class RegistrationTests extends TestBase{
         app.getRegistration().filLRegistrationForm(data);
 
         if(!app.getRegistration().checkBox_isPresent())
-            app.getRegistration().clickCheckBoxTerms();
+            app.getRegistration().clickCheckBox_By_Click_Texst();
 
         Assert.assertFalse(app.getRegistration().buttonYalla_IsEnabled());
 
@@ -55,7 +69,7 @@ public class RegistrationTests extends TestBase{
         app.getRegistration().filLRegistrationForm(data);
 
         if(!app.getRegistration().checkBox_isPresent())
-            app.getRegistration().clickCheckBoxTerms();
+            app.getRegistration().clickCheckBox_By_Click_Texst();
 
         app.getRegistration().clickYallaButton();
 
@@ -67,7 +81,7 @@ public class RegistrationTests extends TestBase{
         app.getRegistration().openRegistrationForm();
         app.getRegistration().filLRegistrationForm(data);
         if(!app.getRegistration().checkBox_isPresent())
-            app.getRegistration().clickCheckBoxTerms();
+            app.getRegistration().clickCheckBox_By_Click_Texst();
         app.getRegistration().clickYallaButton();
 
         Assert.assertTrue(app.getRegistration().isRegistrationFailed_User_already_exists());
