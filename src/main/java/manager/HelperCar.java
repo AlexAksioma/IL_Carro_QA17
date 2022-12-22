@@ -3,7 +3,9 @@ package manager;
 import models.Car;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HelperCar extends HelperBase{
     public HelperCar(WebDriver wd) {
@@ -56,6 +58,8 @@ public class HelperCar extends HelperBase{
     }
 
     public void click_AddAnotherCar_Button() {
+        WebDriverWait wait = new WebDriverWait(wd, 5);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='buttons-container']/button[text()='Add another car']")));
         click(By.xpath("//div[@class='buttons-container']/button[text()='Add another car']"));
     }
 

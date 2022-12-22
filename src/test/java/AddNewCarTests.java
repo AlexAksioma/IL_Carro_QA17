@@ -34,13 +34,16 @@ public class AddNewCarTests extends TestBase {
                 .carRegNumber("12-"+app.getCar().generateRandomStringNumber(3)+"-77")
                 .price("200")
                 .build();
-
+        logger.info(car.toString());
         app.getCar().openCarForm();
         app.getCar().isCarFormPresent();
         app.getCar().fillCarForm(car);
+
         app.getCar().pause(3000);
         app.getCar().submitCarForm();
+        app.getCar().pause(3000);
         app.getCar().click_AddAnotherCar_Button();
+
     }
 
     @Test
@@ -56,6 +59,7 @@ public class AddNewCarTests extends TestBase {
                 .carRegNumber("12-"+app.getCar().generateRandomStringNumber(3)+"-77")
                 .price("200")
                 .build();
+        logger.info("data first car "+car.toString());
         String carRegNumber = car.getCarRegNumber();
         app.getCar().openCarForm();
         app.getCar().isCarFormPresent();
@@ -77,6 +81,7 @@ public class AddNewCarTests extends TestBase {
                 .carRegNumber(carRegNumber)
                 .price("200")
                 .build();
+        logger.info("data second car "+car.toString());
         app.getCar().fillCarForm(car);
         app.getCar().pause(3000);
 

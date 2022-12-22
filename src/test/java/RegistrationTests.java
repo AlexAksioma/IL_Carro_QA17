@@ -20,6 +20,8 @@ public class RegistrationTests extends TestBase{
         app.getRegistration().openRegistrationForm();//wait in method 5 sec
         app.getRegistration().filLRegistrationForm(data);
 
+        logger.info("registrationPositiveTest with Email "+ data.getEmail()+" password "+data.getPassword());
+
         if(!app.getRegistration().checkBox_isPresent())
             app.getRegistration().clickCheckBox_By_Click_Texst();
 
@@ -36,6 +38,8 @@ public class RegistrationTests extends TestBase{
                 .withLastName(app.getRegistration().generateRandomString_a_z(10))
                 .withEmail(app.getRegistration().generateRandomStringEmail())
                 .withPassword(app.getRegistration().generateRandomString_a_z(10));
+        logger.info("registrationNegativeTest_Incorrect_Password email="+data.getEmail()
+                +" password="+data.getPassword());
         app.getRegistration().openRegistrationForm();
         app.getRegistration().filLRegistrationForm(data);
 
@@ -49,6 +53,10 @@ public class RegistrationTests extends TestBase{
                 .withLastName(app.getRegistration().generateRandomString_a_z(10))
                 .withEmail(app.getRegistration().generateRandomString_a_z(7))
                 .withPassword(app.getRegistration().generateRandomPassword());
+
+        logger.info("registrationNegativeTest_Email_WO_dog email="+data.getEmail()
+                +" password="+data.getPassword());
+
         app.getRegistration().openRegistrationForm();
         app.getRegistration().filLRegistrationForm(data);
 
@@ -65,6 +73,8 @@ public class RegistrationTests extends TestBase{
                 .withLastName(app.getRegistration().generateRandomString_a_z(10))
                 .withEmail(app.getRegistration().generateRandomStringEmail())
                 .withPassword(app.getRegistration().generateRandomPassword());
+        logger.info("registrationNegativeTest_with_Registered_data email="+data.getEmail()
+                +" password="+data.getPassword());
         app.getRegistration().openRegistrationForm();
         app.getRegistration().filLRegistrationForm(data);
 
