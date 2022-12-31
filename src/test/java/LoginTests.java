@@ -1,8 +1,12 @@
+import manager.NGListeners;
 import models.User;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+
+@Listeners(NGListeners.class)
 
 public class LoginTests extends TestBase{
 
@@ -18,7 +22,7 @@ public class LoginTests extends TestBase{
         User data = new User()
                 .withEmail("alexmedqwerty@gmail.com")
                 .withPassword("Qwerty12345!");
-        logger.info("loginPositiveTest with email="+data.getEmail()+" password="+data.getPassword());
+        //logger.info("loginPositiveTest with email="+data.getEmail()+" password="+data.getPassword());
         app.getUser().openLoginForm();
         app.getUser().login(data);
         System.out.println(app.getUser().isLoggedSucces());
@@ -31,7 +35,7 @@ public class LoginTests extends TestBase{
         User data = new User()
                 .withEmail("alexmedqwertygmail.com")
                 .withPassword("Qwerty12345!");
-        logger.info("loginNegativeTest_WrongLogin_WO_dog with email="+data.getEmail()+" password="+data.getPassword());
+        //logger.info("loginNegativeTest_WrongLogin_WO_dog with email="+data.getEmail()+" password="+data.getPassword());
         app.getUser().openLoginForm();
         app.getUser().filLoginForm(data);
         app.getUser().clickYallaButton();
@@ -43,7 +47,7 @@ public class LoginTests extends TestBase{
         User data = new User()
                 .withEmail("alexmedqwerty@gmail.com")
                 .withPassword("Q");
-        logger.info("loginNegativeTest_WrongPassword with email="+data.getEmail()+" password="+data.getPassword());
+        //logger.info("loginNegativeTest_WrongPassword with email="+data.getEmail()+" password="+data.getPassword());
         app.getUser().openLoginForm();
         app.getUser().filLoginForm(data);
         app.getUser().clickYallaButton();
@@ -58,7 +62,7 @@ public class LoginTests extends TestBase{
         User data = new User()
                 .withEmail("qwerty@gmail.com")
                 .withPassword("QWERTy123!");
-        logger.info("loginNegativeTest_WO_Registration with email="+data.getEmail()+" password="+data.getPassword());
+        //logger.info("loginNegativeTest_WO_Registration with email="+data.getEmail()+" password="+data.getPassword());
         app.getUser().openLoginForm();
         app.getUser().filLoginForm(data);
         app.getUser().clickYallaButton();

@@ -27,3 +27,12 @@ test {
     useTestNG()
 }
 
+task Login_Registration(type :Test){
+    useTestNG(){
+        suites 'src/test/resources/login_registration.xml'
+    }
+    if(project.hasProperty('browser')){
+        systemProperty 'browser', "${browser}"
+    }
+}
+

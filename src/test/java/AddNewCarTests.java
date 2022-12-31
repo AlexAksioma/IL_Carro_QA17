@@ -38,10 +38,12 @@ public class AddNewCarTests extends TestBase {
         app.getCar().openCarForm();
         app.getCar().isCarFormPresent();
         app.getCar().fillCarForm(car);
-
+        app.getCar().pause(3000);
+        app.getCar().addCarPhoto("C:/Automation_testing/IL_Carro_QA17/src/test/resources/yacht.jpg");
         app.getCar().pause(3000);
         app.getCar().submitCarForm();
         app.getCar().pause(3000);
+
         app.getCar().click_AddAnotherCar_Button();
 
     }
