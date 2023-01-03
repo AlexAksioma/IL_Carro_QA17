@@ -2,6 +2,7 @@ import models.Car;
 import models.User;
 import org.openqa.selenium.By;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -10,7 +11,7 @@ public class AddNewCarTests extends TestBase {
 
     @BeforeMethod
     public void preCondition() {
-        if (app.getUser().isLogged() == false) {
+        if (!app.getUser().isLogged()) {
             app.getUser().openLoginForm();
             app.getUser().login(new User()
                     .withEmail("alexmedqwerty@gmail.com")
@@ -31,7 +32,8 @@ public class AddNewCarTests extends TestBase {
                 .fuel("Diesel")
                 .seats("4")
                 .carClass("c")
-                .carRegNumber("12-"+app.getCar().generateRandomStringNumber(3)+"-77")
+                .carRegNumber("12-"+app.getCar().generateRandomStringNumber(3)+"-"+
+                        app.getCar().generateRandomStringNumber(2))
                 .price("200")
                 .build();
         logger.info(car.toString());
@@ -44,7 +46,7 @@ public class AddNewCarTests extends TestBase {
         app.getCar().submitCarForm();
         app.getCar().pause(3000);
 
-        app.getCar().click_AddAnotherCar_Button();
+        //app.getCar().click_AddAnotherCar_Button();
 
     }
 
@@ -92,7 +94,14 @@ public class AddNewCarTests extends TestBase {
         //app.getCar().submitCarForm();//add new car with number identical carRegNumber
 
     }
-
-
-    //@AfterMethod
+    @AfterMethod
+    public void afterTestClickLogo(){
+        app.getUser().clickButtonLogo();
+    }
+    /*@AfterClass
+    public void logout(){
+        if(app.getUser().isLogged())
+            app.getUser().logout();
+        app.getUser().clickButtonLogo();
+    }*/
 }

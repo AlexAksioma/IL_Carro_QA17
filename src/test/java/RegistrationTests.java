@@ -1,4 +1,5 @@
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -9,6 +10,7 @@ public class RegistrationTests extends TestBase{
     public void preCondition(){
         if(app.getRegistration().isLogged())
             app.getRegistration().logout();
+        app.getUser().clickButtonLogo();
     }
 
     @Test
@@ -102,9 +104,11 @@ public class RegistrationTests extends TestBase{
     }
 
 
-    @AfterMethod
-    public void postCondition(){
-        //if(app.getRegistration().isLogged())
-           // app.getRegistration().logout();
+    @AfterClass
+    public void logout(){
+        if(app.getRegistration().isLogged())
+            app.getRegistration().logout();
+        app.getUser().clickButtonLogo();
+
     }
 }

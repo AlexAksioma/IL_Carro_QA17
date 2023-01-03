@@ -38,7 +38,8 @@ public class HelperUser extends HelperBase {
     public void login(User data) {
         filLoginForm(data);
         clickYallaButton();
-
+        WebDriverWait wait =new WebDriverWait(wd, 5);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[text()='Ok']")));
     }
 
     public void openLoginForm() {

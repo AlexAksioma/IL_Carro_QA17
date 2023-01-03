@@ -1,10 +1,7 @@
 import manager.NGListeners;
 import models.User;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 @Listeners(NGListeners.class)
 
@@ -14,6 +11,7 @@ public class LoginTests extends TestBase{
     public void preCondition(){
         if(app.getUser().isLogged())
             app.getUser().logout();
+        app.getUser().clickButtonLogo();
     }
 
     @Test
@@ -72,9 +70,10 @@ public class LoginTests extends TestBase{
     }
 
 
-    @AfterMethod
-    public void postCondition(){
-        //if(app.getUser().isLogged())
-          //  app.getUser().logout();
+    @AfterClass
+    public void logout(){
+        if(app.getUser().isLogged())
+            app.getUser().logout();
+        app.getUser().clickButtonLogo();
     }
 }

@@ -133,4 +133,10 @@ public class HelperBase {
             e.printStackTrace();
         }
     }
+
+    public void clickButtonLogo() {
+        WebDriverWait wait = new WebDriverWait(wd, 5);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[class='header']>a[class='logo']")));
+        click(By.cssSelector("div[class='header']>a[class='logo']"));
+    }
 }
