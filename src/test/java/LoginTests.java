@@ -1,4 +1,5 @@
 import manager.NGListeners;
+import manager.ProviderData;
 import models.User;
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -13,7 +14,15 @@ public class LoginTests extends TestBase{
             app.getUser().logout();
         app.getUser().clickButtonLogo();
     }
-
+    // data transfer object
+    @Test(dataProvider = "loginModelDto", dataProviderClass = ProviderData.class)
+    public void loginPositiveModelTest(User user){
+        logger.info("User: "+ user.toString());
+        app.getUser().openLoginForm();
+        app.getUser().login(user);
+        Assert.assertTrue(app.getUser().isLoggedSucces());
+        app.getUser().clickOkButton();
+    }
     @Test
     public void loginPositiveTest(){
 

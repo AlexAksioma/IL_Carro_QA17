@@ -22,6 +22,8 @@ public class ApplicationManager {
 
     HelperCar car;
 
+    HelperSearchCar dataSearchCar;
+
     String browser;
 
     public ApplicationManager(String browser) {
@@ -41,6 +43,7 @@ public class ApplicationManager {
         user = new HelperUser(wd);
         registration = new HelperRegistration(wd);
         car = new HelperCar(wd);
+        dataSearchCar = new HelperSearchCar(wd);
     }
 
     public HelperCar getCar() {
@@ -53,5 +56,9 @@ public class ApplicationManager {
 
     public HelperRegistration getRegistration() {
         return registration;
+    }
+
+    public HelperSearchCar getDataSearchCar() {
+        return dataSearchCar;
     }
 }

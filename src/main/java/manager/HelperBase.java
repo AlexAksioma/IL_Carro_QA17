@@ -32,6 +32,10 @@ public class HelperBase {
         wd.findElement(locator).click();
     }
 
+    public void clear(By locator){
+        wd.findElement(locator).clear();
+    }
+
     public void pause(int time) {
         try {
             Thread.sleep(time);
